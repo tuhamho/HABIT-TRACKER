@@ -4,7 +4,7 @@ Một ứng dụng theo dõi thói quen trên Desktop mang phong cách "Gamifica
 
 Dự án này được phát triển độc lập với mục tiêu áp dụng kiến trúc Client-Server nội bộ, quản lý State và tích hợp AI vào một ứng dụng thực tế.
 
-![App Screenshot](assets/screenshot.png)
+![App Screenshot](assets/icon.png)
 
 ## ✨ Tính năng nổi bật
 
