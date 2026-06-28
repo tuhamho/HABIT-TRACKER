@@ -4,12 +4,12 @@
 ## ✨ Tính năng nổi bật
 
 * **📊 Ma trận thói quen động:** Theo dõi tiến độ hàng ngày với giao diện trực quan. Hỗ trợ thêm, sửa, xóa và phân loại thói quen theo các danh mục động (Sức khỏe, Trí tuệ, Kỷ luật,...).
-* ![App Screenshot](assets/Dashboard.png)
 * **⚔️ Hệ thống Gamification:** Tích hợp thanh Kinh nghiệm (XP) và Cấp độ (VD: "Tân binh kỷ luật"). Duy trì chuỗi (streak) càng dài, cấp độ càng cao.
-* **⏱️ Focus Timer (Phiên làm việc sâu):** Tích hợp đồng hồ Pomodoro giúp tập trung cao độ khi viết code hoặc học tập.
- ![App Screenshot](assets/timehoc.png)
+* ![App Screenshot](assets/Dashboard.png)
 * **📓 Nhật ký bối cảnh (Daily Journal):** Ghi chép lý do, cảm xúc hoặc sự kiện của từng ngày. Dữ liệu được lưu trữ an toàn, độc lập dưới dạng Local Persistent Storage.
  ![App Screenshot](assets/analyze.png)
+* **⏱️ Focus Timer (Phiên làm việc sâu):** Tích hợp đồng hồ Pomodoro giúp tập trung cao độ khi viết code hoặc học tập.
+ ![App Screenshot](assets/timehoc.png)
 * **🤖 Trợ lý AI Phân tích (Gemini Integration):** Kết nối trực tiếp với API của Google Gemini để tự động đọc biểu đồ, phân tích hành vi và đưa ra báo cáo "AI Coach" hàng tuần.
  ![App Screenshot](assets/AIc.png)
 * **🎨 Premium UI/UX:** Giao diện Dark Mode hiện đại với hiệu ứng Emerald Glow, thiết kế UX tinh gọn và có phản hồi thị giác (Visual Feedback) rõ ràng.
