@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://generativelanguage.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:;"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bảng Điều Khiển Thói Quen </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Habit Dashboard </p>
+          <h1>Bảng Điều Khiển Kỷ Luật </h1>
+        </div>
+        <div class="date-panel">
+          <span class="date-label">Hôm nay <span id="realtime-clock"></span></span>
+          <strong id="todayLabel">Đang tải</strong>
+        </div>
+        <button id="settingsButton" class="settings-button" type="button" aria-label="Settings">⚙️</button>
+      </header>
+
+      <nav class="app-nav" aria-label="Điều hướng chính">
+        <button id="dashboardNavButton" class="nav-button active" type="button">🏠 Dashboard</button>
+        <button id="analyticsNavButton" class="nav-button" type="button">📊 Analytics</button>
+        <button id="nav-aicoach" class="nav-btn nav-button" type="button">🤖 AI DOG</button>
+      </nav>
+
+      <div id="dashboardScreen" class="screen active">
+      <section class="milestone-card">
+        <div class="milestone-copy">
+          <p class="eyebrow">Mục tiêu dài hạn</p>
+          <div class="editable-goal">
+            <button id="editGoalButton" class="goal-title-button" type="button" title="Đổi tên mục tiêu">
+              <span id="milestoneTitle">Quỹ Porsche 718</span>
+              <span class="edit-mark">Edit</span>
+            </button>
+            <input
+              id="goalTitleInput"
+              class="goal-title-input"
+              type="text"
+              maxlength="100"
+              aria-label="Tên mục tiêu dài hạn"
+              hidden
+            />
+          </div>
+        </div>
+        <div class="milestone-meter">
+          <div class="progress-track progress-track-large">
+            <div id="milestoneFill" class="progress-fill"></div>
+          </div>
+          <div class="meter-meta">
+            <span id="milestoneXp">0 / 10000 XP</span>
+            <span id="milestonePercent">0%</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="overview-grid">
+        <article class="stat-card level-card">
+          <div>
+            <p class="eyebrow">Trạng thái </p>
+            <h2 id="levelLabel">Cấp 1</h2>
+            <p id="rankLabel" class="muted">Tân binh kỷ luật</p>
+          </div>
+          <div>
+            <div class="progress-track">
+              <div id="levelFill" class="progress-fill"></div>
+            </div>
+            <div class="meter-meta">
+              <span id="levelXp">0 / 250 XP</span>
+              <span id="totalXp">Tổng 0 XP</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <p class="eyebrow">Tháng đang xem</p>
+          <div class="month-nav">
+            <button id="prevMonthButton" class="month-nav-button" type="button" aria-label="Tháng trước">&lt;</button>
+            <h2 id="monthLabel">Đang tải</h2>
+            <button id="nextMonthButton" class="month-nav-button" type="button" aria-label="Tháng sau">&gt;</button>
+          </div>
+          <p id="monthCompletion" class="muted">Hoàn thành 0%</p>
+        </article>
+
+        <article class="stat-card">
+          <p class="eyebrow">Chuỗi tốt nhất</p>
+          <h2 id="bestStreak">0 ngày</h2>
+          <p class="muted">Trong tháng đang xem</p>
+        </article>
+
+        <article class="stat-card focus-card">
+          <div>
+            <p class="eyebrow">Focus Timer</p>
+            <h2 id="focusTimerDisplay">00:00:00</h2>
+            <p class="muted">Deep work session</p>
+          </div>
+          <div class="focus-controls">
+            <button id="focusToggleButton" class="ghost-button" type="button">Play</button>
+            <button id="focusSaveButton" class="primary-button" type="button">Save & Reset</button>
+          </div>
+        </article>
+      </section>
+
+      <main class="main-grid">
+        <section class="panel tracker-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Bảng theo dõi</p>
+              <h2>Ma trận hoàn thành hằng ngày</h2>
+            </div>
+            <div class="legend">
+              <span><i class="legend-dot done"></i>Đã xong</span>
+              <span><i class="legend-dot today"></i>Hôm nay</span>
+              <span><i class="legend-dot event"></i>Deadline</span>
+            </div>
+          </div>
+
+          <div id="tableWrap" class="table-wrap">
+            <table class="habit-table" aria-label="Bảng hoàn thành thói quen">
+              <thead id="gridHead"></thead>
+              <tbody id="gridBody"></tbody>
+            </table>
+          </div>
+
+          <div class="tracker-actions">
+            <button id="addHabitButton" class="add-habit-button" type="button">+ Thêm thói quen</button>
+          </div>
+        </section>
+
+        <aside class="panel notes-panel">
+          <div class="panel-header compact">
+            <div>
+              <p class="eyebrow">Ghi chú ngày</p>
+              <h2>Nhật ký hôm nay</h2>
+            </div>
+          </div>
+          <p id="noteDateLabel" class="muted note-date">Đang tải</p>
+          <textarea
+            id="noteInput"
+            maxlength="5000"
+            spellcheck="true"
+            placeholder="Viết vài dòng phản tỉnh cho hôm nay..."
+          ></textarea>
+          <div class="notes-footer">
+            <span id="noteStatus">Đã lưu trên máy</span>
+            <button id="saveNoteButton" type="button">Lưu ghi chú</button>
+          </div>
+        </aside>
+      </main>
+      </div>
+
+      <div id="analyticsScreen" class="screen analytics-screen" hidden>
+        <section class="analytics-hero">
+          <div>
+            <p class="eyebrow">Analytics</p>
+            <h2>Habit Intelligence</h2>
+            <p class="muted">Theo dõi phân bổ danh mục và xu hướng kỷ luật trong tháng đang xem.</p>
+          </div>
+        </section>
+
+        <section class="analytics-grid">
+          <article class="chart-card">
+            <div class="chart-card-header">
+              <div>
+                <p class="eyebrow">Category Distribution</p>
+                <h2>Hoàn thành theo danh mục</h2>
+              </div>
+            </div>
+            <div class="chart-frame donut-frame">
+              <canvas id="categoryDonutChart"></canvas>
+            </div>
+          </article>
+
+          <article class="chart-card chart-card-wide">
+            <div class="chart-card-header">
+              <div>
+                <p class="eyebrow">Discipline Trend</p>
+                <h2>Xu hướng hoàn thành theo ngày</h2>
+              </div>
+            </div>
+            <div class="chart-frame trend-frame">
+              <canvas id="disciplineTrendChart"></canvas>
+            </div>
+          </article>
+
+          <article class="chart-card chart-card-wide focus-analytics-card">
+            <div class="chart-card-header">
+              <div>
+                <p class="eyebrow">Focus Time Intelligence</p>
+                <h2>Deep work theo ngày</h2>
+              </div>
+            </div>
+            <div class="focus-summary-grid">
+              <div class="focus-summary-card">
+                <span>Total Study Time Today</span>
+                <strong id="focusTodaySummary">0m</strong>
+              </div>
+              <div class="focus-summary-card">
+                <span>This Week</span>
+                <strong id="focusWeekSummary">0m</strong>
+              </div>
+              <div class="focus-summary-card">
+                <span>This Month</span>
+                <strong id="focusMonthSummary">0m</strong>
+              </div>
+            </div>
+            <div class="chart-frame focus-frame">
+              <canvas id="focusTimeChart"></canvas>
+            </div>
+          </article>
+        </section>
+      </div>
+
+      <div id="aicoach-view" style="display: none;" class="view-section ai-coach-view">
+        <aside class="ai-config-panel">
+          <div class="ai-panel-header">
+            <p class="eyebrow">AI Configuration</p>
+            <h2>AI DOG</h2>
+            <p class="muted">Lưu API key cục bộ trên máy này và tùy chọn đính kèm ảnh workspace hôm nay.</p>
+          </div>
+
+          <label class="field-label" for="gemini-api-key">Gemini API Key</label>
+          <input
+            type="password"
+            id="gemini-api-key"
+            class="text-input"
+            placeholder="Enter Gemini API Key..."
+            autocomplete="off"
+          />
+          <button id="btn-save-ai-config" class="primary-button ai-full-button" type="button">Save Configuration</button>
+
+          <div class="ai-upload-section">
+            <p class="eyebrow">Workspace Evidence</p>
+            <input type="file" id="ai-evidence-input" accept="image/*" hidden />
+            <label id="ai-upload-dropzone" class="ai-upload-dropzone" for="ai-evidence-input">
+              <span class="ai-upload-icon">↥</span>
+              <strong>Upload evidence image</strong>
+              <span>PNG, JPG, WEBP. Kéo thả hoặc bấm để chọn ảnh.</span>
+            </label>
+            <div id="image-preview-container" class="image-preview-container" aria-live="polite"></div>
+          </div>
+        </aside>
+
+        <main class="ai-response-panel">
+          <div class="ai-response-header">
+            <div>
+              <p class="eyebrow">AI DOG</p>
+              <h2>Phân tích kỷ luật 7 ngày gần nhất</h2>
+              <p class="muted">Báo cáo sẽ kết hợp habit completion, focus time và ảnh workspace nếu có.</p>
+            </div>
+            <button id="btn-generate-ai" class="primary-button" type="button">Generate Weekly AI Report</button>
+          </div>
+
+          <div id="ai-coach-alert" class="ai-alert-box" hidden></div>
+
+          <div id="chat-history-container" class="overflow-y-auto max-h-[500px] chat-history-container">
+            <p class="ai-empty-state">Chưa có cuộc trò chuyện. Hãy tạo Weekly AI Report để bắt đầu phiên chat với AI DOG.</p>
+          </div>
+
+          <form id="ai-chat-form" class="ai-chat-input-row">
+            <input
+              type="text"
+              id="ai-chat-input"
+              placeholder="Trò chuyện với AI DOG..."
+              class="w-full bg-slate-800 text-white p-3 rounded-lg"
+              autocomplete="off"
+            />
+            <button id="btn-send-chat" class="primary-button" type="submit">Send</button>
+          </form>
+        </main>
+      </div>
+    </div>
+
+    <div id="toastRoot" class="toast-root" aria-live="polite" aria-atomic="true"></div>
+
+    <div id="habitModal" class="modal-backdrop" hidden>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="habitModalTitle">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Thói quen mới</p>
+            <h2 id="habitModalTitle">Thêm thói quen</h2>
+          </div>
+          <button id="closeHabitModalButton" class="icon-button" type="button" aria-label="Đóng">x</button>
+        </div>
+
+        <label class="field-label" for="habitNameInput">Tên thói quen</label>
+        <input id="habitNameInput" class="text-input" type="text" maxlength="80" placeholder="Ví dụ: Thiền 10 phút" />
+
+        <label class="field-label" for="habitCategoryInput">Danh mục</label>
+        <select id="habitCategoryInput" class="text-input">
+          <option value="Tinh thần">Tinh thần</option>
+          <option value="Sức khỏe" selected>Sức khỏe</option>
+          <option value="Trí tuệ">Trí tuệ</option>
+          <option value="Tài chính">Tài chính</option>
+          <option value="Kỷ luật">Kỷ luật</option>
+          <option value="Mối quan hệ">Mối quan hệ</option>
+        </select>
+
+        <div class="modal-actions">
+          <button id="cancelHabitButton" class="ghost-button" type="button">Hủy</button>
+          <button id="confirmHabitButton" class="primary-button" type="button">Thêm</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="eventModal" class="modal-backdrop" hidden>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="eventModalTitle">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Deadline</p>
+            <h2 id="eventModalTitle">Thêm ghi chú ngày</h2>
+          </div>
+          <button id="closeEventModalButton" class="icon-button" type="button" aria-label="Đóng">x</button>
+        </div>
+
+        <p id="eventDateLabel" class="event-date-label">Đang chọn ngày</p>
+        <label class="field-label" for="eventTextInput">Nội dung</label>
+        <textarea
+          id="eventTextInput"
+          class="event-text-input"
+          maxlength="160"
+          rows="4"
+          placeholder="Ví dụ: Assignment due, đóng tiền nhà, lịch họp..."
+        ></textarea>
+
+        <div class="modal-actions">
+          <button id="clearEventButton" class="ghost-button danger-ghost-button" type="button">Xóa</button>
+          <button id="cancelEventButton" class="ghost-button" type="button">Hủy</button>
+          <button id="saveEventButton" class="primary-button" type="button">Lưu</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="settingsModal" class="modal-backdrop" hidden>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Settings</p>
+            <h2 id="settingsModalTitle">Backup dữ liệu</h2>
+          </div>
+          <button id="closeSettingsButton" class="icon-button" type="button" aria-label="Đóng">x</button>
+        </div>
+        <p class="settings-copy">Xuất file JSON để backup, hoặc nhập file JSON để khôi phục toàn bộ dữ liệu local.</p>
+        <div class="settings-actions">
+          <button id="manageCategoriesButton" class="ghost-button" type="button">Manage Categories</button>
+          <button id="exportDataButton" class="primary-button" type="button">Export Data (JSON)</button>
+          <button id="importDataButton" class="ghost-button" type="button">Import Data</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="categoriesModal" class="modal-backdrop" hidden>
+      <div class="modal-card category-modal-card" role="dialog" aria-modal="true" aria-labelledby="categoriesModalTitle">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Categories</p>
+            <h2 id="categoriesModalTitle">Manage Categories</h2>
+          </div>
+          <button id="closeCategoriesButton" class="icon-button" type="button" aria-label="Đóng">x</button>
+        </div>
+
+        <p class="settings-copy">Đổi tên category sẽ tự động cập nhật tất cả thói quen đang dùng category đó.</p>
+        <div id="categoriesEditorList" class="categories-editor-list"></div>
+
+        <div class="modal-actions">
+          <button id="cancelCategoriesButton" class="ghost-button" type="button">Hủy</button>
+          <button id="saveCategoriesButton" class="primary-button" type="button">Lưu category</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="renderer.js"></script>
+  </body>
+</html>

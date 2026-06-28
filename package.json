@@ -1,0 +1,52 @@
+{
+  "name": "habit-dashboard-rpg",
+  "version": "1.0.0",
+  "description": "Ung dung desktop theo doi thoi quen gamified, chay offline tren Windows.",
+  "main": "main.js",
+  "author": "Habit Dashboard",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win",
+    "dist": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.habitdashboard.rpg",
+    "productName": "Bang Dieu Khien Thoi Quen ",
+    "copyright": "Copyright (c) 2026 By Truong Minh Tu and AI Dog",
+    "asar": true,
+    "files": [
+      "main.js",
+      "index.html",
+      "style.css",
+      "renderer.js",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Bang Dieu Khien Thoi Quen ",
+      "deleteAppDataOnUninstall": false
+    }
+  }
+}
