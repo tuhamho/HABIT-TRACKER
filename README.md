@@ -35,18 +35,22 @@ Cài đặt các thư viện cần thiết (Dependencies):
 
 Bash
 npm install
+
 Khởi chạy ứng dụng trong môi trường phát triển (Development):
 
 Bash
 npm start
+
 📦 Đóng gói xuất xưởng (Production Build)
 Để tạo ra file cài đặt .exe độc lập sử dụng trên môi trường Windows (không cần cài đặt Node.js):
 
 Bash
 npm run build
+
 Lưu ý: File .exe sau khi build thành công sẽ nằm trong thư mục dist/.
 
 🧠 Kiến trúc hệ thống
+
 Ứng dụng tuân thủ nghiêm ngặt mô hình bảo mật của Electron:
 
 Renderer Process (renderer.js): Xử lý giao diện người dùng, gọi API bên ngoài (Gemini) và hiển thị dữ liệu động. Tuyệt đối không can thiệp vào hệ thống máy tính.
