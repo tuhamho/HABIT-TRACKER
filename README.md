@@ -58,4 +58,4 @@ Main Process (main.js): Chạy trên nền Node.js, quản lý vòng đời ứn
 
 Context Isolation: Giao tiếp giữa Frontend và Backend cục bộ được thực hiện hoàn toàn qua luồng IPC (Inter-Process Communication) an toàn.
 
-Phát triển bởi Trương Minh Tú và AI Dog | Sinh viên ngành Kỹ thuật Máy tính tại Trường Đại học Công nghệ Thông tin (UIT) - Đam mê theo đuổi lĩnh vực Software Engineering và Web Development.
+Phát triển bởi Trương Minh Tú và AI Dog | Sinh viên ngành Kỹ thuật Máy tính tại Trường Đại học Công nghệ Thông tin (UIT) - Đam mê theo đuổi lĩnh vực Software Engineering và Web Development. 
