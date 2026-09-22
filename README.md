@@ -1,6 +1,6 @@
 # 🌟 Bảng Điều Khiển Kỷ Luật (Habit Tracker Dashboard)
 ## Dự án này được phát triển độc lập với mục tiêu áp dụng kiến trúc Client-Server nội bộ, quản lý State và tích hợp AI vào một ứng dụng thực tế.  
-![App Screenshot](assets/icon.png) 
+
 ## ✨ Tính năng nổi bật
 
 * **📊 Ma trận thói quen động:** Theo dõi tiến độ hàng ngày với giao diện trực quan. Hỗ trợ thêm, sửa, xóa và phân loại thói quen theo các danh mục động (Sức khỏe, Trí tuệ, Kỷ luật,...).
